@@ -1,0 +1,59 @@
+[gd_scene load_steps=5 format=2]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.494118, 0.0627451, 0.180392, 0.388235 )
+
+[sub_resource type="DynamicFontData" id=2]
+font_path = "res://Assets/Fonts/nimbus-mono/nimbusmono-bold.otf"
+
+[sub_resource type="DynamicFont" id=3]
+size = 26
+outline_size = 1
+outline_color = Color( 0.152941, 0.00784314, 0.00784314, 1 )
+font_data = SubResource( 2 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 24
+outline_size = 1
+outline_color = Color( 0.152941, 0.00784314, 0.00784314, 1 )
+font_data = SubResource( 2 )
+
+[node name="VersionInfoPanel" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="."]
+margin_right = 880.0
+margin_bottom = 100.0
+custom_styles/panel = SubResource( 1 )
+
+[node name="Label" type="Label" parent="Panel"]
+margin_left = 21.0
+margin_top = 9.0
+margin_right = 422.0
+margin_bottom = 48.0
+custom_fonts/font = SubResource( 3 )
+text = "Satyr's Greenwood"
+
+[node name="Label2" type="Label" parent="Panel"]
+margin_left = 445.0
+margin_top = 9.0
+margin_right = 863.0
+margin_bottom = 48.0
+custom_fonts/font = SubResource( 3 )
+text = "Version 0.1.2"
+
+[node name="Label3" type="Label" parent="Panel"]
+margin_left = 18.0
+margin_top = 58.0
+margin_right = 449.0
+margin_bottom = 92.0
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0.403922, 0.301961, 0.984314, 1 )
+text = "20 Dec 2019, 23:30 SAST"
+__meta__ = {
+"_edit_use_anchors_": false
+}
