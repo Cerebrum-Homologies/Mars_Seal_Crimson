@@ -40,10 +40,10 @@ radius = 0.115
 height = 0.115
 
 [sub_resource type="DynamicFontData" id=6]
-font_path = "res://Assets/Fonts/Mono/DroidSansMono.ttf"
+font_path = "res://Assets/Fonts/edge-of-the-galaxy-font/EdgeOfTheGalaxyRegular-OVEa6.otf"
 
 [sub_resource type="DynamicFont" id=7]
-size = 28
+size = 36
 outline_size = 2
 font_data = SubResource( 6 )
 
@@ -128,7 +128,7 @@ tracks/1/keys = {
 "values": [ "Right", "default", "Right" ]
 }
 
-[node name="SceneAbruptLanding" type="Spatial"]
+[node name="Scene-AbruptLanding" type="Spatial"]
 script = ExtResource( 7 )
 
 [node name="Timer-Process" type="Timer" parent="."]
@@ -170,12 +170,15 @@ fov = 85.0
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Label" type="Label" parent="CanvasLayer"]
-margin_right = 447.0
-margin_bottom = 67.0
+margin_left = 30.0
+margin_top = 30.0
+margin_right = 641.0
+margin_bottom = 138.0
 custom_fonts/font = SubResource( 7 )
 custom_colors/font_color = Color( 0.0509804, 0.898039, 0.262745, 1 )
 custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
-text = "An abrupt, jarring landing"
+text = "An abrupt, jarring landing...
+You need to explore your surroundings"
 __meta__ = {
 "_edit_use_anchors_": false
 }

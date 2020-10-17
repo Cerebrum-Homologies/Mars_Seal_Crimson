@@ -1,0 +1,7 @@
+[gd_scene format=2]
+
+[node name="Scene=ForestWalk" type="Spatial"]
+
+[node name="Timer-Process" type="Timer" parent="."]
+
+[node name="Sprite_Planet--ForestExpanse" type="Sprite3D" parent="."]

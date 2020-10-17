@@ -1,10 +1,14 @@
 extends Spatial
 
 var panelinfo_class = preload("res://Scenes/UI/PanelInfo.tscn")
+var forestSceneResource : String = "res://Scenes/ForestClearing#2.tscn"
 
 var timer_ticks = 0
 var help_toggle = false
 var pnl_helper = null
+
+func changeScene(sceneResource : String):
+	get_tree().change_scene(sceneResource)
 
 func create_panel_info(modcolor : Color):
 	var pnl_info = panelinfo_class.instance()
@@ -45,3 +49,5 @@ func _on_TimerProcess_timeout():
 	timer_ticks += 1
 	if timer_ticks == 20:
 		player_walk_path()
+	if timer_ticks == 160:
+		changeScene(forestSceneResource)

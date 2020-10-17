@@ -29,6 +29,9 @@ __meta__ = {
 margin_right = 880.0
 margin_bottom = 100.0
 custom_styles/panel = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Label" type="Label" parent="Panel"]
 margin_left = 21.0
