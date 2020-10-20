@@ -19,6 +19,51 @@ config/name="Mars_Seal_Crimson"
 run/main_scene="res://Scenes/PlaceHolder.tscn"
 config/icon="res://icon.png"
 
+[debug]
+
+settings/fps/force_fps=60
+
+[display]
+
+window/size/width=1280
+window/size/height=768
+window/size/fullscreen=true
+
+[input]
+
+ui_focus_next={
+"deadzone": 0.5,
+"events": [  ]
+}
+ui_focus_prev={
+"deadzone": 0.5,
+"events": [  ]
+}
+ui_help={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777244,"unicode":0,"echo":false,"script":null)
+ ]
+}
+ui_inventory={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777218,"unicode":0,"echo":false,"script":null)
+ ]
+}
+
+[memory]
+
+limits/message_queue/max_size_kb=1512
+
+[network]
+
+limits/debugger_stdout/max_chars_per_second=48000
+limits/debugger_stdout/max_messages_per_frame=30
+
 [rendering]
 
+quality/driver/fallback_to_gles2=true
+threads/thread_model=2
+quality/filters/anisotropic_filter_level=2
+environment/default_clear_color=Color( 0.0666667, 0.0156863, 0.356863, 1 )
+quality/filters/msaa=1
 environment/default_environment="res://default_env.tres"

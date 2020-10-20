@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/barkwoods_exodus_ravine#1.png-bfde9e06b5f58414b91fde997ac1e1dc.s3tc.stex"
-path.etc2="res://.import/barkwoods_exodus_ravine#1.png-bfde9e06b5f58414b91fde997ac1e1dc.etc2.stex"
+path.s3tc="res://.import/waterfall_stream_particles#1.png-12b4766eb0b4c4db9f41d576660f13bd.s3tc.stex"
+path.etc2="res://.import/waterfall_stream_particles#1.png-12b4766eb0b4c4db9f41d576660f13bd.etc2.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc2" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Assets/Images/Background/barkwoods_exodus_ravine#1.png"
-dest_files=[ "res://.import/barkwoods_exodus_ravine#1.png-bfde9e06b5f58414b91fde997ac1e1dc.s3tc.stex", "res://.import/barkwoods_exodus_ravine#1.png-bfde9e06b5f58414b91fde997ac1e1dc.etc2.stex" ]
+source_file="res://Assets/Images/Particles/waterfall_stream_particles#1.png"
+dest_files=[ "res://.import/waterfall_stream_particles#1.png-12b4766eb0b4c4db9f41d576660f13bd.s3tc.stex", "res://.import/waterfall_stream_particles#1.png-12b4766eb0b4c4db9f41d576660f13bd.etc2.stex" ]
 
 [params]
 

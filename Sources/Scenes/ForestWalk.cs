@@ -18,6 +18,7 @@ namespace Mars_Seal_Crimson
 	public class ForestWalk : Spatial
 	{
 		const string nextSceneResource = "res://Scenes/DeepRavine#4.tscn";
+		const string sceneDescriptor = "DeepRavine";
 		private EnumScene3State levelState = EnumScene3State.SCENE3_STATE_WAIT;
 		private SceneUtilities sceneUtil;
 		private Godot.Timer processTimer;
@@ -39,6 +40,7 @@ namespace Mars_Seal_Crimson
 			sceneUtil = new SceneUtilities();
 			sceneUtil.CleanPreviousScenes(this);
 			processTimer = this.GetNodeOrNull<Godot.Timer>("Timer-Process");
+			Diagnostics.PrintNullValueMessage(processTimer, "processTimer");
 			if (processTimer != null)
 			{
 				//introTimer.WaitTime = 0.1f;
@@ -57,6 +59,8 @@ namespace Mars_Seal_Crimson
 
 		private EnumScene3State GetLevelState(int ticker) {
 			var lState = EnumScene3State.SCENE3_STATE_WAIT;
+			if (ticker == 260)
+				lState = EnumScene3State.SCENE3_STATE_SWITCH_SCENE;
 			return lState;
 		}
 
@@ -106,11 +110,14 @@ namespace Mars_Seal_Crimson
 
 		private void _on_ElegantExit()
 		{
-			if (processTimer != null)
+			GD.Print($"Exiting scene, {sceneDescriptor}");
+			if (processTimer != null) {
+				processTimer.Disconnect("timeout", this, nameof(_on_ProcessTimer_timeout));
 				processTimer.Stop();
-			for (int ix = 0; ix < 10; ix++)
+			}
+			for (int ix = 0; ix < 4; ix++)
 			{
-				System.Threading.Thread.Sleep(200);
+				System.Threading.Thread.Sleep(100);
 			}
 			sceneUtil.ChangeScene(this, nextSceneResource);
 		}

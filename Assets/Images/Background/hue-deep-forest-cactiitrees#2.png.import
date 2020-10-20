@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/barkwoods_exodus_ravine#1.png-bfde9e06b5f58414b91fde997ac1e1dc.s3tc.stex"
-path.etc2="res://.import/barkwoods_exodus_ravine#1.png-bfde9e06b5f58414b91fde997ac1e1dc.etc2.stex"
+path.s3tc="res://.import/hue-deep-forest-cactiitrees#2.png-faa656f07ed5c028b52d70f9294da741.s3tc.stex"
+path.etc2="res://.import/hue-deep-forest-cactiitrees#2.png-faa656f07ed5c028b52d70f9294da741.etc2.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc2" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Assets/Images/Background/barkwoods_exodus_ravine#1.png"
-dest_files=[ "res://.import/barkwoods_exodus_ravine#1.png-bfde9e06b5f58414b91fde997ac1e1dc.s3tc.stex", "res://.import/barkwoods_exodus_ravine#1.png-bfde9e06b5f58414b91fde997ac1e1dc.etc2.stex" ]
+source_file="res://Assets/Images/Background/hue-deep-forest-cactiitrees#2.png"
+dest_files=[ "res://.import/hue-deep-forest-cactiitrees#2.png-faa656f07ed5c028b52d70f9294da741.s3tc.stex", "res://.import/hue-deep-forest-cactiitrees#2.png-faa656f07ed5c028b52d70f9294da741.etc2.stex" ]
 
 [params]
 
