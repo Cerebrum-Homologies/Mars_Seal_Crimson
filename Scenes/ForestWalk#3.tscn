@@ -1,7 +1,129 @@
-[gd_scene format=2]
+[gd_scene load_steps=20 format=2]
 
-[node name="Scene=ForestWalk" type="Spatial"]
+[ext_resource path="res://Assets/Images/Background/hue_planet_big_volcano#2.png" type="Texture" id=1]
+[ext_resource path="res://Sources/Scenes/ForestWalk.cs" type="Script" id=2]
+[ext_resource path="res://Assets/Images/Background/barkwoods_tree_copse#1.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Images/Background/hue-deep-forest-cactiitrees#1.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Images/Background/barkwoods_tree_copse#2.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Images/Background/hue-deep-forest-cactiitrees#2.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Images/Background/hue-deep-forest-cactiitrees#3.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Images/Sprites/BlueWalkLeft.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Images/Sprites/BlueWalkRight.png" type="Texture" id=9]
+
+[sub_resource type="AtlasTexture" id=1]
+flags = 4
+atlas = ExtResource( 8 )
+region = Rect2( 0, 0, 35, 74 )
+
+[sub_resource type="AtlasTexture" id=2]
+flags = 4
+atlas = ExtResource( 8 )
+region = Rect2( 35, 0, 35, 74 )
+
+[sub_resource type="AtlasTexture" id=3]
+flags = 4
+atlas = ExtResource( 8 )
+region = Rect2( 70, 0, 35, 74 )
+
+[sub_resource type="AtlasTexture" id=4]
+flags = 4
+atlas = ExtResource( 8 )
+region = Rect2( 105, 0, 35, 74 )
+
+[sub_resource type="AtlasTexture" id=5]
+flags = 4
+atlas = ExtResource( 9 )
+region = Rect2( 0, 0, 35, 74 )
+
+[sub_resource type="AtlasTexture" id=6]
+flags = 4
+atlas = ExtResource( 9 )
+region = Rect2( 35, 0, 35, 74 )
+
+[sub_resource type="AtlasTexture" id=7]
+flags = 4
+atlas = ExtResource( 9 )
+region = Rect2( 70, 0, 35, 74 )
+
+[sub_resource type="AtlasTexture" id=8]
+flags = 4
+atlas = ExtResource( 9 )
+region = Rect2( 105, 0, 35, 74 )
+
+[sub_resource type="SpriteFrames" id=9]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ) ],
+"loop": true,
+"name": "Right",
+"speed": 5.0
+} ]
+
+[sub_resource type="NavigationPolygon" id=10]
+vertices = PoolVector2Array( 140.844, 694.254, 1.50146, 766.172, 1.50146, 661.291, 164.817, 589.372, 295.17, 679.271, 337.122, 586.376, 440.506, 647.806, 521.414, 752.688, 395.556, 728.715, 548.384, 655.298, 698.215, 746.695, 695.218, 638.816, 1033.83, 674.776, 1165.69, 647.806, 1263.08, 638.816, 1261.58, 715.23, 1180.67, 745.196, 1042.83, 755.685, 889.998, 730.213, 819.577, 623.833, 916.967, 638.817 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 4, 0, 3, 5, 6 ), PoolIntArray( 7, 8, 4, 6, 9, 10 ), PoolIntArray( 10, 9, 11 ), PoolIntArray( 12, 13, 14, 15, 16, 17, 18 ), PoolIntArray( 19, 20, 12, 18, 10, 11 ) ]
+outlines = [ PoolVector2Array( 1.50146, 766.172, 1.50146, 661.291, 164.817, 589.372, 337.122, 586.376, 440.506, 647.806, 548.384, 655.298, 695.218, 638.816, 819.577, 623.833, 916.967, 638.817, 1033.83, 674.776, 1165.69, 647.806, 1263.08, 638.816, 1261.58, 715.23, 1180.67, 745.196, 1042.83, 755.685, 889.998, 730.213, 698.215, 746.695, 521.414, 752.688, 395.556, 728.715, 295.17, 679.271, 140.844, 694.254 ) ]
+
+[node name="Scene-ForestWalk" type="Spatial"]
+script = ExtResource( 2 )
 
 [node name="Timer-Process" type="Timer" parent="."]
 
-[node name="Sprite_Planet--ForestExpanse" type="Sprite3D" parent="."]
+[node name="Sprite-Planet-VolcanoMountain" type="Sprite3D" parent="."]
+transform = Transform( 5.6, 0, 0, 0, 4.2, 0, 0, 0, 1, -10.5, 0, -38 )
+texture = ExtResource( 1 )
+
+[node name="Sprite-Planet-ForestExpanse1" type="Sprite3D" parent="."]
+transform = Transform( 1.5, 0, 0, 0, 1.5, 0, 0, 0, 1, -5, -2, -16 )
+texture = ExtResource( 3 )
+
+[node name="Sprite-Planet-ForestExpanse2" type="Sprite3D" parent="."]
+transform = Transform( 1.6, 0, 0, 0, 1.6, 0, 0, 0, 1, 4.2, -3.2, -15 )
+texture = ExtResource( 5 )
+
+[node name="Sprite-Planet-ForestExpanse3" type="Sprite3D" parent="."]
+transform = Transform( 1.6, 0, 0, 0, 1.6, 0, 0, 0, 1, -21.334, -3.5, -14.564 )
+texture = ExtResource( 5 )
+
+[node name="Sprite-Forest-CactiiTrees1" type="Sprite3D" parent="."]
+transform = Transform( 1.3, 0, 0, 0, 1.3, 0, 0, 0, 1, -5, -3, -12 )
+texture = ExtResource( 4 )
+
+[node name="Sprite-Forest-CactiiTrees2" type="Sprite3D" parent="."]
+transform = Transform( 1.25, 0, 0, 0, 1.25, 0, 0, 0, 1, 11.149, -3.9, -11.5 )
+texture = ExtResource( 6 )
+
+[node name="Sprite-Forest-CactiiTrees3" type="Sprite3D" parent="."]
+transform = Transform( 0.8, 0, 0, 0, 0.85, 0, 0, 0, 1, -5, -3.5, -8.5 )
+texture = ExtResource( 4 )
+
+[node name="Sprite-Forest-CactiiTrees4" type="Sprite3D" parent="."]
+transform = Transform( 0.85, 0, 0, 0, 0.9, 0, 0, 0, 1, 2.089, -3.8, -5 )
+texture = ExtResource( 7 )
+
+[node name="AnimatedSprite-Clouds" type="AnimatedSprite3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.8, 8.65, -30 )
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.35 )
+fov = 80.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Animated-Player-Character" type="AnimatedSprite" parent="CanvasLayer"]
+position = Vector2( 40, 570 )
+scale = Vector2( 2, 2 )
+frames = SubResource( 9 )
+animation = "Right"
+centered = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer"]
+
+[node name="Navigation2D" type="Navigation2D" parent="CanvasLayer"]
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="CanvasLayer/Navigation2D"]
+navpoly = SubResource( 10 )

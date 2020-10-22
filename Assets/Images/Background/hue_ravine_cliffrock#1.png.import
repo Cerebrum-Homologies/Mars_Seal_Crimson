@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/fire_crackle#1.png-af5abcc97f252cb4a85a8c7b21228a47.s3tc.stex"
-path.etc2="res://.import/fire_crackle#1.png-af5abcc97f252cb4a85a8c7b21228a47.etc2.stex"
+path.s3tc="res://.import/hue_ravine_cliffrock#1.png-f13ef5c7bf23d04235a800f09b8c11ae.s3tc.stex"
+path.etc2="res://.import/hue_ravine_cliffrock#1.png-f13ef5c7bf23d04235a800f09b8c11ae.etc2.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc2" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Assets/Images/Particles/fire_crackle#1.png"
-dest_files=[ "res://.import/fire_crackle#1.png-af5abcc97f252cb4a85a8c7b21228a47.s3tc.stex", "res://.import/fire_crackle#1.png-af5abcc97f252cb4a85a8c7b21228a47.etc2.stex" ]
+source_file="res://Assets/Images/Background/hue_ravine_cliffrock#1.png"
+dest_files=[ "res://.import/hue_ravine_cliffrock#1.png-f13ef5c7bf23d04235a800f09b8c11ae.s3tc.stex", "res://.import/hue_ravine_cliffrock#1.png-f13ef5c7bf23d04235a800f09b8c11ae.etc2.stex" ]
 
 [params]
 

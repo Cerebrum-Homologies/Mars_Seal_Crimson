@@ -7,6 +7,7 @@ namespace Mars_Seal_Crimson
 	{
 		private TextureButton buttonGameIntroStart = null;
 		private SceneUtilities sceneUtil;
+		private Godot.AnimatedSprite playerCharacter;
 		const string nextSceneResource = "res://Scenes/LandingAbruptly#1.tscn";
 		public delegate void IntroLaunchDelegate();
 		public event IntroLaunchDelegate IntroLaunch;
@@ -20,6 +21,8 @@ namespace Mars_Seal_Crimson
 			//sceneUtil.CleanPreviousScenes(this);
 			buttonGameIntroStart = this.GetNodeOrNull<TextureButton>("Button-Intro-Start");
 			Diagnostics.PrintNullValueMessage(buttonGameIntroStart, "buttonGameIntroStart");
+			playerCharacter = this.GetNodeOrNull<Godot.AnimatedSprite>("Animated-Player-Character");
+			playerCharacter.Play("default");
 			if (buttonGameIntroStart != null)
 			{
 				buttonGameIntroStart.Connect("pressed", this, nameof(_onButtonGameInto_pressed));
@@ -29,6 +32,7 @@ namespace Mars_Seal_Crimson
 
 		private void _on_IntroLaunch()
 		{
+			playerCharacter.Stop();
 			for (int ix = 0; ix < 4; ix++)
 			{
 				System.Threading.Thread.Sleep(100);
