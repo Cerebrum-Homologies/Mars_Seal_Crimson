@@ -3,7 +3,7 @@ using System;
 
 namespace Mars_Seal_Crimson
 {
-	public class InGameMenu : Control
+	public partial class InGameMenu : Control
 	{
 		private Panel panelGameMenu;
 		private Button buttonExitGame = null;
@@ -18,7 +18,7 @@ namespace Mars_Seal_Crimson
 			{
 				buttonExitGame = panelGameMenu.GetNodeOrNull<Button>("button-Exit-Game");
 				Diagnostics.PrintNullValueMessage(buttonExitGame, "buttonExitGame");
-				buttonExitGame.Connect("pressed", this, nameof(_onButtonExitGame_pressed));
+				buttonExitGame.Connect("pressed",new Callable(this,nameof(_onButtonExitGame_pressed)));
 			}
 		}
 

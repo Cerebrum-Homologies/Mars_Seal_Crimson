@@ -3,10 +3,10 @@ using System.Linq;
 
 namespace Mars_Seal_Crimson
 {
-    public class CharacterMovement
+    public partial class CharacterMovement
     {
-        private Godot.AnimatedSprite gameCharacter;
-        private Godot.Navigation2D navigationPlayerPath;
+        private Godot.AnimatedSprite2D gameCharacter;
+        private Godot.NavigationAgent2D navigationPlayerPath;
         private bool playerWalkAction = false;
         private bool moveNode = false;
         private float walkSpeed = 250.0f;
@@ -15,7 +15,7 @@ namespace Mars_Seal_Crimson
         public delegate void TestCharacterPositionDelegate(Vector2 position);
         private TestCharacterPositionDelegate characterPositionFunction;
 
-        public CharacterMovement(Godot.AnimatedSprite pCharacter, Godot.Navigation2D navPath, TestCharacterPositionDelegate testPositionFunction = null)
+        public CharacterMovement(Godot.AnimatedSprite2D pCharacter, Godot.NavigationAgent2D navPath, TestCharacterPositionDelegate testPositionFunction = null)
         {
             gameCharacter = pCharacter;
             navigationPlayerPath = navPath;
@@ -24,9 +24,12 @@ namespace Mars_Seal_Crimson
 
         public void PerformPlayerWalkTo(Vector2 startPosition, Vector2 clickPosition)
         {
-            if ((startPosition != null) && (clickPosition != null))
+            if (navigationPlayerPath != null)
             {
-                pathPlotPlayer = navigationPlayerPath.GetSimplePath(startPosition, clickPosition);
+                /* FIX -- Determine Path navigation */
+                //pathPlotPlayer = navigationPlayerPath.GetSimplePath(startPosition, clickPosition);
+                navigationPlayerPath.TargetLocation = clickPosition;
+                pathPlotPlayer = navigationPlayerPath.GetCurrentNavigationPath();
                 pathPlotPlayer = pathPlotPlayer.Skip(1).Take(pathPlotPlayer.Length - 1).ToArray();
             }
         }
@@ -37,7 +40,7 @@ namespace Mars_Seal_Crimson
                 characterPositionFunction(playerPosition);
         }
 
-        public void PlayerWalkAction(float speed)
+        public void PlayerWalkAction(double speed)
         {
             var lastPosition = gameCharacter.Position;
             for (var x = 0; x < pathPlotPlayer.Length; x++)
@@ -45,7 +48,7 @@ namespace Mars_Seal_Crimson
                 var distanceBetweenPoints = lastPosition.DistanceTo(pathPlotPlayer[x]);
                 if (speed <= distanceBetweenPoints)
                 {
-                    gameCharacter.Position = lastPosition.LinearInterpolate(pathPlotPlayer[x], speed / distanceBetweenPoints);
+                    gameCharacter.Position = lastPosition.Lerp(pathPlotPlayer[x], (float)(speed / distanceBetweenPoints));
                     TestPlayerPosition(gameCharacter.Position);
                     break;
                 }

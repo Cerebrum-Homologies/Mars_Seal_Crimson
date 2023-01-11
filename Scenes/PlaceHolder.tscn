@@ -1,117 +1,81 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=14 format=3 uid="uid://d3nn76mr22h5d"]
 
-[ext_resource path="res://Sources/Scenes/PlaceHolder.cs" type="Script" id=1]
-[ext_resource path="res://Assets/Images/Tiles/joystick_clip.png" type="Texture" id=2]
-[ext_resource path="res://Assets/Images/Sprites/BlueWalkRight.png" type="Texture" id=3]
-[ext_resource path="res://Assets/Images/Sprites/BlueWalkLeft.png" type="Texture" id=4]
+[ext_resource type="Script" path="res://Sources/Scenes/PlaceHolder.cs" id="1"]
+[ext_resource type="Texture2D" uid="uid://b5fagjysdlhcw" path="res://Assets/Images/Tiles/joystick_clip.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://b4vijlg8r5ri6" path="res://Assets/Images/Sprites/BlueWalkRight.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://0yf6xa30b5xe" path="res://Assets/Images/Sprites/BlueWalkLeft.png" id="4"]
 
-[sub_resource type="DynamicFontData" id=1]
-font_path = "res://Assets/Fonts/Comfortaa-Bold.ttf"
+[sub_resource type="AtlasTexture" id="9"]
+atlas = ExtResource("3")
+region = Rect2(0, 0, 35, 74)
 
-[sub_resource type="DynamicFont" id=2]
-size = 32
-outline_size = 2
-font_data = SubResource( 1 )
+[sub_resource type="AtlasTexture" id="10"]
+atlas = ExtResource("3")
+region = Rect2(35, 0, 35, 74)
 
-[sub_resource type="DynamicFontData" id=3]
-font_path = "res://Assets/Fonts/Mono/DejaVuSansMono-Bold.ttf"
+[sub_resource type="AtlasTexture" id="11"]
+atlas = ExtResource("3")
+region = Rect2(70, 0, 35, 74)
 
-[sub_resource type="DynamicFont" id=4]
-size = 30
-font_data = SubResource( 3 )
+[sub_resource type="AtlasTexture" id="12"]
+atlas = ExtResource("3")
+region = Rect2(105, 0, 35, 74)
 
-[sub_resource type="AtlasTexture" id=5]
-flags = 4
-atlas = ExtResource( 4 )
-region = Rect2( 0, 0, 35, 74 )
+[sub_resource type="AtlasTexture" id="5"]
+atlas = ExtResource("4")
+region = Rect2(0, 0, 35, 74)
 
-[sub_resource type="AtlasTexture" id=6]
-flags = 4
-atlas = ExtResource( 4 )
-region = Rect2( 35, 0, 35, 74 )
+[sub_resource type="AtlasTexture" id="6"]
+atlas = ExtResource("4")
+region = Rect2(35, 0, 35, 74)
 
-[sub_resource type="AtlasTexture" id=7]
-flags = 4
-atlas = ExtResource( 4 )
-region = Rect2( 70, 0, 35, 74 )
+[sub_resource type="AtlasTexture" id="7"]
+atlas = ExtResource("4")
+region = Rect2(70, 0, 35, 74)
 
-[sub_resource type="AtlasTexture" id=8]
-flags = 4
-atlas = ExtResource( 4 )
-region = Rect2( 105, 0, 35, 74 )
+[sub_resource type="AtlasTexture" id="8"]
+atlas = ExtResource("4")
+region = Rect2(105, 0, 35, 74)
 
-[sub_resource type="AtlasTexture" id=9]
-flags = 4
-atlas = ExtResource( 3 )
-region = Rect2( 0, 0, 35, 74 )
-
-[sub_resource type="AtlasTexture" id=10]
-flags = 4
-atlas = ExtResource( 3 )
-region = Rect2( 35, 0, 35, 74 )
-
-[sub_resource type="AtlasTexture" id=11]
-flags = 4
-atlas = ExtResource( 3 )
-region = Rect2( 70, 0, 35, 74 )
-
-[sub_resource type="AtlasTexture" id=12]
-flags = 4
-atlas = ExtResource( 3 )
-region = Rect2( 105, 0, 35, 74 )
-
-[sub_resource type="SpriteFrames" id=13]
-animations = [ {
-"frames": [ SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ) ],
+[sub_resource type="SpriteFrames" id="13"]
+animations = [{
+"frames": [SubResource("9"), SubResource("10"), SubResource("11"), SubResource("12")],
 "loop": true,
-"name": "default",
+"name": &"Right",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ) ],
+"frames": [SubResource("5"), SubResource("6"), SubResource("7"), SubResource("8")],
 "loop": true,
-"name": "Right",
+"name": &"default",
 "speed": 5.0
-} ]
+}]
 
 [node name="Scene-Placeholder" type="Node2D"]
-script = ExtResource( 1 )
+script = ExtResource("1")
 
 [node name="Label" type="Label" parent="."]
-margin_right = 834.0
-margin_bottom = 116.0
-custom_fonts/font = SubResource( 2 )
-custom_colors/font_color = Color( 0.686275, 0.027451, 0.027451, 1 )
-custom_colors/font_outline_modulate = Color( 0.937255, 0.890196, 0.513726, 1 )
+offset_right = 834.0
+offset_bottom = 116.0
 text = "Mars_Seal_Crimson
 Placeholder scene"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Button-Intro-Start" type="TextureButton" parent="."]
-margin_left = 238.0
-margin_top = 173.0
-margin_right = 462.0
-margin_bottom = 327.0
-texture_normal = ExtResource( 2 )
-expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+offset_left = 238.0
+offset_top = 173.0
+offset_right = 462.0
+offset_bottom = 327.0
+texture_normal = ExtResource("2")
 
 [node name="Label2" type="Label" parent="."]
-margin_left = 494.0
-margin_top = 211.0
-margin_right = 687.0
-margin_bottom = 293.0
-custom_fonts/font = SubResource( 4 )
+offset_left = 494.0
+offset_top = 211.0
+offset_right = 687.0
+offset_bottom = 293.0
 text = "Play Intro"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="Animated-Player-Character" type="AnimatedSprite" parent="."]
-position = Vector2( 280, 460 )
-frames = SubResource( 13 )
-animation = "Right"
+[node name="Animated-Player-Character" type="AnimatedSprite2D" parent="."]
+position = Vector2(280, 460)
+frames = SubResource("13")
+animation = &"Right"
+
 [connection signal="pressed" from="Button-Intro-Start" to="." method="_on_ButtonIntroStart_pressed"]

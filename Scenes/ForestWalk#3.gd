@@ -1,4 +1,4 @@
-extends Spatial
+extends Node3D
 
 var panelinfo_class = preload("res://Scenes/UI/PanelInfo.tscn")
 var forestDeepResource : String = "res://Scenes/DeepRavine#4.tscn"

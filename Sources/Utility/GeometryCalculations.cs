@@ -1,10 +1,10 @@
-﻿using Godot;
+using Godot;
 using System;
 using System.Collections.Generic;
 
 namespace Mars_Seal_Crimson
 {
-    public class GeometryCalculations
+    public partial class GeometryCalculations
     {
         //Math.PI * degrees
         public static List<Godot.Vector2> GenerateCirclePlots(float radius, int numpoints)

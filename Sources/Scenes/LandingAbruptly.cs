@@ -17,7 +17,7 @@ namespace Mars_Seal_Crimson
 
 	}
 
-	public class LandingAbruptly : Spatial
+	public partial class LandingAbruptly : Node3D
 	{
 		const string nextSceneResource = "res://Scenes/ForestClearing#2.tscn";
 		const string panelInfoResource = "res://Scenes/UI/PanelInfo.tscn";
@@ -25,14 +25,14 @@ namespace Mars_Seal_Crimson
 		private EnumScene1State levelState = EnumScene1State.SCENE1_STATE_WAIT;
 		private SceneUtilities sceneUtil;
 		private Godot.Timer processTimer;
-		private Godot.Camera sceneCamera;
+		private Godot.Camera3D sceneCamera;
 		private Godot.CanvasLayer canvasOverlay;
 		private Godot.AnimationPlayer animationPlayer;
-		private Godot.AnimatedSprite playerCharacter;
-		private Navigation2D navigationPlayerPath;
+		private main_player playerCharacter;
+		private Godot.NavigationRegion2D navigationPlayerPath;
 		private PanelInfo helpBoard;
 		private InventoryChest inventoryChest;
-		private CharacterMovement gamePlayerMovement;
+		//private CharacterMovement gamePlayerMovement;
 		private bool flagSceneExitAllowed = true;
 		private bool switchSceneTrigger = false;
 		private bool moveNode = false;
@@ -58,7 +58,7 @@ namespace Mars_Seal_Crimson
 			if (processTimer != null)
 			{
 				//introTimer.WaitTime = 0.1f;
-				processTimer.Connect("timeout", this, nameof(_on_ProcessTimer_timeout));
+				processTimer.Connect("timeout", new Callable(this, nameof(_on_ProcessTimer_timeout)));
 				processTimer.Start();
 			}
 			//buttonGameIntroStart = this.GetNodeOrNull<TextureButton>("Button-Intro-Start");
@@ -68,9 +68,10 @@ namespace Mars_Seal_Crimson
 			if (canvasOverlay != null)
 			{
 				animationPlayer = canvasOverlay.GetNodeOrNull<Godot.AnimationPlayer>("AnimationPlayer");
-				navigationPlayerPath = canvasOverlay.GetNodeOrNull<Navigation2D>("Navigation2D");
-				playerCharacter = canvasOverlay.GetNodeOrNull<Godot.AnimatedSprite>("Animated-Player-Character");
-				gamePlayerMovement = new CharacterMovement(playerCharacter, navigationPlayerPath, TestPlayerPosition);
+				navigationPlayerPath = canvasOverlay.GetNodeOrNull<NavigationRegion2D>("NavigationRegionWalkPath");
+				playerCharacter = navigationPlayerPath.GetNodeOrNull<main_player>("MainPlayer");
+				//gamePlayerMovement = new CharacterMovement(playerCharacter, navigationPlayerPath, TestPlayerPosition);
+				Diagnostics.PrintNullValueMessage(navigationPlayerPath, "navigationPlayerPath");
 			}
 			ElegantExit += _on_ElegantExit;
 			GeneratePanelInfo();
@@ -87,8 +88,8 @@ namespace Mars_Seal_Crimson
 			PackedScene viewportScene = (PackedScene)ResourceLoader.Load(panelInfoResource);
 			if (viewportScene != null)
 			{
-				helpBoard = (PanelInfo)viewportScene.Instance();
-				helpBoard.Connect("ready", this, nameof(_on_HelpBoard_Ready));
+				helpBoard = (PanelInfo)viewportScene.Instantiate();
+				helpBoard.Connect("ready", new Callable(this, nameof(_on_HelpBoard_Ready)));
 				GD.Print($"Loading PanelInfo from PackedScene, PanelInfo = {helpBoard.Name}");
 				helpBoard.Visible = false;
 				AddChild(helpBoard);
@@ -100,18 +101,19 @@ namespace Mars_Seal_Crimson
 			PackedScene childScene = (PackedScene)ResourceLoader.Load(inventoryBoxResource);
 			if (childScene != null)
 			{
-				inventoryChest = (InventoryChest)childScene.Instance();
+				inventoryChest = (InventoryChest)childScene.Instantiate();
 				GD.Print($"Loading InventoryChest from PackedScene, inventoryChest = {inventoryChest.Name}");
 				//playerViewport.AddChild(viewportScene.Instance());
 				inventoryChest.Visible = false;
-				//storyArcBoard.Connect("ready", this, nameof(_on_StoryBoardArc_Ready));
+				//storyArcBoard.Connect("ready",new Callable(this,nameof(_on_StoryBoardArc_Ready)));
 				AddChild(inventoryChest);
 			}
 		}
 
 		private void DisplayInventoryChest(Vector2 leftTop, bool show = true)
 		{ // = const Vector2(30.0f, 20.0f)
-			if (inventoryChest == null) {
+			if (inventoryChest == null)
+			{
 				GD.Print($"DisplayInventoryChest(), inventoryChest == null");
 				return;
 			}
@@ -119,7 +121,7 @@ namespace Mars_Seal_Crimson
 			GD.Print($"DisplayInventoryChest(), inventoryChest.Visible = {inventoryChest.Visible}");
 			if (show)
 			{
-				inventoryChest.RectPosition = leftTop;
+				inventoryChest.Position = leftTop;
 			}
 		}
 
@@ -171,7 +173,7 @@ namespace Mars_Seal_Crimson
 					}
 				case EnumScene1State.SCENE1_STATE_SWITCH_SCENE:
 					{
-						sceneUtil.ChangeScene(this, nextSceneResource);
+						sceneUtil.ChangeSceneToFile(this, nextSceneResource);
 						break;
 					}
 				default:
@@ -199,14 +201,14 @@ namespace Mars_Seal_Crimson
 		{
 			if (processTimer != null)
 			{
-				processTimer.Disconnect("timeout", this, nameof(_on_ProcessTimer_timeout));
+				processTimer.Disconnect("timeout", new Callable(this, nameof(_on_ProcessTimer_timeout)));
 				processTimer.Stop();
 			}
 			for (int ix = 0; ix < 10; ix++)
 			{
 				System.Threading.Thread.Sleep(200);
 			}
-			sceneUtil.ChangeScene(this, nextSceneResource);
+			sceneUtil.ChangeSceneToFile(this, nextSceneResource);
 		}
 
 		private bool ShowInGameMenu()
@@ -237,8 +239,10 @@ namespace Mars_Seal_Crimson
 			}
 		}
 
-		private bool PickupObjectWithinRadius(float radius, Vector2 clickPosition) {
-			foreach ((string, Vector2) pickup in listPickups) {
+		private bool PickupObjectWithinRadius(float radius, Vector2 clickPosition)
+		{
+			foreach ((string, Vector2) pickup in listPickups)
+			{
 				(string name, Vector2 posPick) = pickup;
 				float pickDistance = posPick.DistanceTo(clickPosition);
 				if (pickDistance <= radius)
@@ -257,37 +261,36 @@ namespace Mars_Seal_Crimson
 				{
 					if (eventMouseButton.IsPressed())
 					{
-						if (eventMouseButton.ButtonIndex == (int)ButtonList.Left)
-                        {
-						GD.Print("Mouse Click/Unclick at: ", eventMouseButton.Position);
-						moveNode = true;
-						gamePlayerMovement.PerformPlayerWalkTo(playerCharacter.Position, eventMouseButton.Position);
+						if (eventMouseButton.ButtonIndex == MouseButton.Left)
+						{
+							GD.Print("Mouse Click/Unclick at: ", eventMouseButton.Position);
+							moveNode = true;
+							//gamePlayerMovement.PerformPlayerWalkTo(playerCharacter.Position, eventMouseButton.Position);
+							playerCharacter.MovePlayerToPosition(eventMouseButton.Position);
 						}
-						if (eventMouseButton.ButtonIndex == (int)ButtonList.Right) //Used for the secondary action -- picking things up , etc..
-                        {
-                            if (PickupObjectWithinRadius(detectPickupRadius, eventMouseButton.Position))
-                            {
+						if (eventMouseButton.ButtonIndex == MouseButton.Right) //Used for the secondary action -- picking things up , etc..
+						{
+							if (PickupObjectWithinRadius(detectPickupRadius, eventMouseButton.Position))
+							{
 
-                            }
-                        }
+							}
+						}
 					}
 				}
 				//else if (@event is InputEventMouseMotion eventMouseMotion)
 				//	GD.Print("Mouse Motion at: ", eventMouseMotion.Position);
 
-				//GD.Print("Viewport Resolution is: ", GetViewportRect().Size);
+				//GD.Print("SubViewport Resolution is: ", GetViewportRect().Size);
 			}
 		}
 
-		public override void _Process(float delta)
+		public override void _Process(double delta)
 		{
-			double x = 0.0;
-			double y = 0.0;
-			float speed = walkSpeed;
+			double speed = walkSpeed;
 
 			if (moveNode)
 			{
-				gamePlayerMovement.PlayerWalkAction(speed * delta);
+				//gamePlayerMovement.PlayerWalkAction(speed * delta);
 			}
 			if (Input.IsActionPressed("ui_cancel"))
 			{
@@ -301,10 +304,15 @@ namespace Mars_Seal_Crimson
 			}
 			if (Input.IsActionPressed("ui_inventory"))
 			{
-				if (InputAssistance.KeyBounceCheckAlternative("ui_inventory", 0.25f, 0.75f)) {
+				if (InputAssistance.KeyBounceCheckAlternative("ui_inventory", 0.25f, 0.75f))
+				{
 					GD.Print("Inventory input key pressed\n");
 					ShowInventory();
 				}
+			}
+			if (playerCharacter.Position.x >= 800)
+			{
+				ElegantExit.Invoke();
 			}
 			/*
 			if (levelState != EnumScene1State.SCENE1_STATE_WAIT)

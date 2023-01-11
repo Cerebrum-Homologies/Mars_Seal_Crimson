@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace Mars_Seal_Crimson
 {
-    public class InventoryItem
+    public partial class InventoryItem
     {
         public string id { get; set; }
         public string name { get; set; }

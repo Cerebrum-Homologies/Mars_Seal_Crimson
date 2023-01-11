@@ -3,11 +3,11 @@ using System;
 
 namespace Mars_Seal_Crimson
 {
-	public class PlaceHolder : Node2D
+	public partial class PlaceHolder : Node2D
 	{
 		private TextureButton buttonGameIntroStart = null;
 		private SceneUtilities sceneUtil;
-		private Godot.AnimatedSprite playerCharacter;
+		private Godot.AnimatedSprite2D playerCharacter;
 		const string nextSceneResource = "res://Scenes/LandingAbruptly#1.tscn";
 		public delegate void IntroLaunchDelegate();
 		public event IntroLaunchDelegate IntroLaunch;
@@ -21,11 +21,11 @@ namespace Mars_Seal_Crimson
 			//sceneUtil.CleanPreviousScenes(this);
 			buttonGameIntroStart = this.GetNodeOrNull<TextureButton>("Button-Intro-Start");
 			Diagnostics.PrintNullValueMessage(buttonGameIntroStart, "buttonGameIntroStart");
-			playerCharacter = this.GetNodeOrNull<Godot.AnimatedSprite>("Animated-Player-Character");
+			playerCharacter = this.GetNodeOrNull<Godot.AnimatedSprite2D>("Animated-Player-Character");
 			playerCharacter.Play("default");
 			if (buttonGameIntroStart != null)
 			{
-				buttonGameIntroStart.Connect("pressed", this, nameof(_onButtonGameInto_pressed));
+				buttonGameIntroStart.Connect("pressed",new Callable(this,nameof(_onButtonGameInto_pressed)));
 				IntroLaunch += _on_IntroLaunch;
 			}
 		}
@@ -37,7 +37,7 @@ namespace Mars_Seal_Crimson
 			{
 				System.Threading.Thread.Sleep(100);
 			}
-			sceneUtil.ChangeSceneFrom2D(this, nextSceneResource);
+			sceneUtil.ChangeScene(this, nextSceneResource); //Was ChangeSceneFrom2D
 		}
 
 		private void _onButtonGameInto_pressed()

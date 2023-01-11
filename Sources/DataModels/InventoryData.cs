@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace Mars_Seal_Crimson
 {
-    public class InventoryData
+    public partial class InventoryData
     {
         private List<InventoryItem> inventoryStore;
         private Dictionary<string, string> inventoryNameMap = new Dictionary<string, string>();

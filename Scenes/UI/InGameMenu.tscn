@@ -10,24 +10,24 @@ color = Color( 0.752941, 0.360784, 0.0705882, 0.721569 )
 color = Color( 0.176471, 0.00392157, 0.00392157, 1 )
 thickness = 3
 
-[sub_resource type="DynamicFontData" id=3]
+[sub_resource type="FontFile" id=3]
 font_path = "res://Assets/Fonts/albert-text/AlbertText-Bold.ttf"
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="FontFile" id=4]
 size = 40
 font_data = SubResource( 3 )
 
-[sub_resource type="DynamicFontData" id=5]
+[sub_resource type="FontFile" id=5]
 font_path = "res://Assets/Fonts/Roboto/Roboto-Medium.ttf"
 
-[sub_resource type="DynamicFont" id=6]
+[sub_resource type="FontFile" id=6]
 size = 22
 font_data = SubResource( 5 )
 
-[sub_resource type="DynamicFontData" id=7]
+[sub_resource type="FontFile" id=7]
 font_path = "res://Assets/Fonts/albert-text/AlbertText-Bold.ttf"
 
-[sub_resource type="DynamicFont" id=8]
+[sub_resource type="FontFile" id=8]
 size = 28
 outline_size = 1
 outline_color = Color( 0.968627, 0.972549, 0.356863, 0.415686 )
@@ -42,26 +42,26 @@ __meta__ = {
 }
 
 [node name="MenuFrame" type="Panel" parent="."]
-margin_right = 820.0
-margin_bottom = 520.0
+offset_right = 820.0
+offset_bottom = 520.0
 custom_styles/panel = SubResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="panel-Game-Menu" type="Panel" parent="MenuFrame"]
-margin_right = 820.0
-margin_bottom = 90.0
+offset_right = 820.0
+offset_bottom = 90.0
 custom_styles/panel = SubResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="LabelGameTitle" type="Label" parent="MenuFrame/panel-Game-Menu"]
-margin_left = 8.0
-margin_top = 10.0
-margin_right = 471.0
-margin_bottom = 55.0
+offset_left = 8.0
+offset_top = 10.0
+offset_right = 471.0
+offset_bottom = 55.0
 custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0.909804, 0.972549, 0.552941, 1 )
 text = "Satyr's Greenwood"
@@ -70,10 +70,10 @@ __meta__ = {
 }
 
 [node name="button-Exit-Game" type="Button" parent="MenuFrame"]
-margin_left = 8.0
-margin_top = 468.0
-margin_right = 222.0
-margin_bottom = 503.0
+offset_left = 8.0
+offset_top = 468.0
+offset_right = 222.0
+offset_bottom = 503.0
 custom_fonts/font = SubResource( 6 )
 text = "Exit game"
 __meta__ = {
@@ -81,14 +81,14 @@ __meta__ = {
 }
 
 [node name="label-Resume-Play" type="Label" parent="MenuFrame"]
-margin_left = 15.0
-margin_top = 364.0
-margin_right = 934.0
-margin_bottom = 453.0
+offset_left = 15.0
+offset_top = 364.0
+offset_right = 934.0
+offset_bottom = 453.0
 custom_fonts/font = SubResource( 8 )
 custom_colors/font_color = Color( 0.878431, 0.278431, 0.0431373, 1 )
 text = "Press ESC to exit this menu and resume playing the game \\n
-or click on 'Exit game' below to exit your game play"
+or click checked 'Exit game' below to exit your game play"
 autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false

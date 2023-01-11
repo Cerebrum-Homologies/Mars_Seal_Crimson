@@ -4,13 +4,13 @@ using System;
 
 namespace Mars_Seal_Crimson
 {
-	public class InventoryChest : Control
+	public partial class InventoryChest : Control
 	{
 		private Godot.Panel chestPanel;
 		private Godot.Timer eventsTimer;
 		private Godot.PanelContainer itemSlotsPanel;
 		private Godot.PanelContainer inventoryActionsPanel;
-		private Dictionary<string, Godot.Sprite> inventoryItemsDisplayMap = new Dictionary<string, Godot.Sprite>();
+		private Dictionary<string, Godot.Sprite2D> inventoryItemsDisplayMap = new Dictionary<string, Godot.Sprite2D>();
 		private Dictionary<string, string> inventorySpriteResourceMap = new Dictionary<string, string>();
 		private Dictionary<string, int> inventorySlotIndexMap = new Dictionary<string, int>();
 		private InventoryData inventoryStoreCollection = new InventoryData();
@@ -23,7 +23,7 @@ namespace Mars_Seal_Crimson
 			eventsTimer = this.GetNodeOrNull<Godot.Timer>("Timer-Events");
 			if (eventsTimer != null)
 			{
-				eventsTimer.Connect("timeout", this, nameof(_on_EventsTimer_timeout));
+				eventsTimer.Connect("timeout",new Callable(this,nameof(_on_EventsTimer_timeout)));
 				eventsTimer.Start();
 			}
 			//buttonGameIntroStart = this.GetNodeOrNull<TextureButton>("Button-Intro-Start");
@@ -44,8 +44,8 @@ namespace Mars_Seal_Crimson
 			return res;            
 		}
 
-		public Sprite FindSpriteForItem(string inventoryItem) {
-			Sprite res = null;
+		public Sprite2D FindSpriteForItem(string inventoryItem) {
+			Sprite2D res = null;
 			if (inventoryItem != null) {
 				if (inventoryItemsDisplayMap.ContainsKey(inventoryItem))
 					res = inventoryItemsDisplayMap[inventoryItem];

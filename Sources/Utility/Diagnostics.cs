@@ -1,11 +1,11 @@
-﻿using Godot;
+using Godot;
 using System;
 using System.Text;
 using System.Collections.Generic;
 
 namespace Mars_Seal_Crimson
 {
-    public class Diagnostics
+    public partial class Diagnostics
     {
         public static void PrintNullValueMessage(object obj, string objectName)
         {

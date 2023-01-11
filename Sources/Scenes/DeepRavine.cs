@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 namespace Mars_Seal_Crimson
 {
@@ -12,15 +13,20 @@ namespace Mars_Seal_Crimson
 		SCENE4_STATE_SWITCH_SCENE,
 
 	}
-	public class DeepRavine : Spatial
+	public partial class DeepRavine : Node3D
 	{
 		const string nextSceneResource = "res://Scenes/ForestWalk#3.tscn";
 		private EnumScene4State levelState = EnumScene4State.SCENE4_STATE_WAIT;
 		private SceneUtilities sceneUtil;
 		private Godot.Timer processTimer;
-		private Godot.Camera sceneCamera;
+		private Godot.Camera3D sceneCamera;
 		private Godot.CanvasLayer canvasOverlay;
 		private Godot.AnimationPlayer animationPlayer;
+		private main_player playerCharacter;
+		private Godot.NavigationRegion2D navigationPlayerPath;
+		private float detectPickupRadius = 120.0f;
+		private Vector2 positionChest = new Vector2(30.0f, 80.0f);
+		private List<(string value, Godot.Vector2 position)> listPickups = new List<(string value, Godot.Vector2 position)>();
 		private bool flagSceneExitAllowed = true;
 		private bool switchSceneTrigger = false;
 		private int processTimerCounter = 0;
@@ -40,13 +46,15 @@ namespace Mars_Seal_Crimson
 			if (processTimer != null)
 			{
 				//introTimer.WaitTime = 0.1f;
-				processTimer.Connect("timeout", this, nameof(_on_ProcessTimer_timeout));
+				processTimer.Connect("timeout",new Callable(this,nameof(_on_ProcessTimer_timeout)));
 				processTimer.Start();
 			}
 			canvasOverlay = this.GetNodeOrNull<Godot.CanvasLayer>("CanvasLayer");
 			if (canvasOverlay != null)
 			{
 				animationPlayer = canvasOverlay.GetNodeOrNull<Godot.AnimationPlayer>("AnimationPlayer");
+				navigationPlayerPath = canvasOverlay.GetNodeOrNull<NavigationRegion2D>("NavigationRegionWalkPath");
+				playerCharacter = navigationPlayerPath.GetNodeOrNull<main_player>("MainPlayer");
 			}
 			ElegantExit += _on_ElegantExit;
 		}
@@ -79,7 +87,7 @@ namespace Mars_Seal_Crimson
 					}
 				case EnumScene4State.SCENE4_STATE_SWITCH_SCENE:
 					{
-						sceneUtil.ChangeScene(this, nextSceneResource);
+						sceneUtil.ChangeSceneToFile(this, nextSceneResource);
 						break;
 					}
 				default:
@@ -107,7 +115,7 @@ namespace Mars_Seal_Crimson
 		{
 			if (processTimer != null)
 			{
-				processTimer.Disconnect("timeout", this, nameof(_on_ProcessTimer_timeout));
+				processTimer.Disconnect("timeout",new Callable(this,nameof(_on_ProcessTimer_timeout)));
 				processTimer.Stop();
 			}
 			for (int ix = 0; ix < 4; ix++)
@@ -115,7 +123,7 @@ namespace Mars_Seal_Crimson
 				System.Threading.Thread.Sleep(100);
 			}
 			GD.Print($"_on_ElegantExit, switch scene to {nextSceneResource}\n");
-			sceneUtil.ChangeScene(this, nextSceneResource);
+			sceneUtil.ChangeSceneToFile(this, nextSceneResource);
 		}
 
 		private bool ShowInGameMenu()
@@ -130,10 +138,44 @@ namespace Mars_Seal_Crimson
 
 		}
 
-		public override void _Process(float delta)
+		private bool PickupObjectWithinRadius(float radius, Vector2 clickPosition) {
+			foreach ((string, Vector2) pickup in listPickups) {
+				(string name, Vector2 posPick) = pickup;
+				float pickDistance = posPick.DistanceTo(clickPosition);
+				if (pickDistance <= radius)
+					return true;
+			}
+			return false;
+		}
+
+		public override void _Input(InputEvent @event)
 		{
-			double x = 0.0;
-			double y = 0.0;
+			//if ((levelState != EnumScene2State.SCENE2_STATE_WAIT) 
+			/* && (levelState != EnumScene2State.SCENE2_STATE_START_WALK) )*/
+			{
+				if (@event is InputEventMouseButton eventMouseButton)
+				{
+					if (eventMouseButton.IsPressed())
+					{
+						if (eventMouseButton.ButtonIndex == MouseButton.Left)
+						{
+							GD.Print("Mouse Click/Unclick at: ", eventMouseButton.Position);
+							//moveNode = true;
+							playerCharacter.MovePlayerToPosition(eventMouseButton.Position);
+						}
+						if (eventMouseButton.ButtonIndex == MouseButton.Right) //Used for the secondary action -- picking things up , etc..
+						{
+							if (PickupObjectWithinRadius(detectPickupRadius, eventMouseButton.Position)) {
+
+							}
+						}
+					}
+				}
+			}
+		}
+
+		public override void _Process(double delta)
+		{
 			double speed = walkSpeed;
 
 			if (Input.IsActionPressed("ui_cancel"))

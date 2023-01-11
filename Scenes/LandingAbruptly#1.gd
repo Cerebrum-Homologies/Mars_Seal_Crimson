@@ -1,4 +1,4 @@
-extends Spatial
+extends Node3D
 
 var panelinfo_class = preload("res://Scenes/UI/PanelInfo.tscn")
 var forestSceneResource : String = "res://Scenes/ForestClearing#2.tscn"
@@ -8,10 +8,10 @@ var help_toggle = false
 var pnl_helper = null
 
 func changeScene(sceneResource : String):
-	get_tree().change_scene(sceneResource)
+	get_tree().change_scene_to_file(sceneResource)
 
 func create_panel_info(modcolor : Color):
-	var pnl_info = panelinfo_class.instance()
+	var pnl_info = panelinfo_class.instantiate()
 	if modcolor.r > 0.01 or modcolor.g > 0.01 or modcolor.b > 0.01:
 		pnl_info.set_panel_color(modcolor)
 	return pnl_info
@@ -33,7 +33,7 @@ func _input(event):
 		help_toggle = !help_toggle
 		if help_toggle == true:
 			if pnl_helper == null:
-				pnl_helper = create_panel_info(Color.bisque)
+				pnl_helper = create_panel_info(Color.BISQUE)
 				pnl_helper.position = Vector2(80, 50)
 				pnl_helper.set_title(20, 'In-game help')
 				add_child(pnl_helper)

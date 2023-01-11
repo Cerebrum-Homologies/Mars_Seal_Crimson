@@ -1,10 +1,10 @@
-﻿using Godot;
+using Godot;
 using System;
 using System.Collections.Generic;
 
 namespace Mars_Seal_Crimson
 {
-    public class SpriteAdvocate
+    public partial class SpriteAdvocate
     {
         //typedef List<Sprite3D> ListSprites;
         private Dictionary<string, List<Sprite3D>> spriteOrganisationMap = new Dictionary<string, List<Sprite3D>>();

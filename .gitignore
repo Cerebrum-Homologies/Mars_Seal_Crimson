@@ -1,8 +1,15 @@
-
 # Godot-specific ignores
 .import/
+.godot/
 export.cfg
 export_presets.cfg
 
 # Mono-specific ignores
 .mono/
+
+#Custom build
+Build/
+
+# System/tool-specific ignores
+.directory
+*~

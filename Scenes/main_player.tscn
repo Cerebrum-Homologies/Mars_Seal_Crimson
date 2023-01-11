@@ -1,0 +1,67 @@
+[gd_scene load_steps=14 format=3 uid="uid://dcwn6vkhroulj"]
+
+[ext_resource type="Script" path="res://Sources/Scenes/main_player.cs" id="1_w6cwg"]
+[ext_resource type="Texture2D" uid="uid://b4vijlg8r5ri6" path="res://Assets/Images/Sprites/BlueWalkRight.png" id="1_xcfb5"]
+[ext_resource type="Texture2D" uid="uid://0yf6xa30b5xe" path="res://Assets/Images/Sprites/BlueWalkLeft.png" id="2_gfmpc"]
+
+[sub_resource type="AtlasTexture" id="14"]
+atlas = ExtResource("1_xcfb5")
+region = Rect2(0, 0, 35, 74)
+
+[sub_resource type="AtlasTexture" id="15"]
+atlas = ExtResource("1_xcfb5")
+region = Rect2(35, 0, 35, 74)
+
+[sub_resource type="AtlasTexture" id="16"]
+atlas = ExtResource("1_xcfb5")
+region = Rect2(70, 0, 35, 74)
+
+[sub_resource type="AtlasTexture" id="17"]
+atlas = ExtResource("1_xcfb5")
+region = Rect2(105, 0, 35, 74)
+
+[sub_resource type="AtlasTexture" id="10"]
+atlas = ExtResource("2_gfmpc")
+region = Rect2(0, 0, 35, 74)
+
+[sub_resource type="AtlasTexture" id="11"]
+atlas = ExtResource("2_gfmpc")
+region = Rect2(35, 0, 35, 74)
+
+[sub_resource type="AtlasTexture" id="12"]
+atlas = ExtResource("2_gfmpc")
+region = Rect2(70, 0, 35, 74)
+
+[sub_resource type="AtlasTexture" id="13"]
+atlas = ExtResource("2_gfmpc")
+region = Rect2(105, 0, 35, 74)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_um24f"]
+animations = [{
+"frames": [SubResource("14"), SubResource("15"), SubResource("16"), SubResource("17")],
+"loop": true,
+"name": &"Right",
+"speed": 5.0
+}, {
+"frames": [SubResource("10"), SubResource("11"), SubResource("12"), SubResource("13")],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gmd62"]
+radius = 33.0
+height = 146.0
+
+[node name="MainPlayer" type="CharacterBody2D"]
+script = ExtResource("1_w6cwg")
+
+[node name="Animated-Player-Character" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2, 2)
+frames = SubResource("SpriteFrames_um24f")
+animation = &"Right"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_gmd62")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]

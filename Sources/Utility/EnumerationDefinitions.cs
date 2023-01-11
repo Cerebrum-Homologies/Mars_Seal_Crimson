@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 namespace Mars_Seal_Crimson
 {

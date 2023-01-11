@@ -3,7 +3,7 @@ using System;
 
 namespace Mars_Seal_Crimson
 {
-public class PanelInfo : Node2D
+public partial class PanelInfo : Node2D
 {
 
 	// Called when the node enters the scene tree for the first time.
