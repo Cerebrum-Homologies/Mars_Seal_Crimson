@@ -39,12 +39,36 @@ region = Rect2(105, 0, 35, 74)
 
 [sub_resource type="SpriteFrames" id="13"]
 animations = [{
-"frames": [SubResource("9"), SubResource("10"), SubResource("11"), SubResource("12")],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("9")
+}, {
+"duration": 1.0,
+"texture": SubResource("10")
+}, {
+"duration": 1.0,
+"texture": SubResource("11")
+}, {
+"duration": 1.0,
+"texture": SubResource("12")
+}],
 "loop": true,
 "name": &"Right",
 "speed": 5.0
 }, {
-"frames": [SubResource("5"), SubResource("6"), SubResource("7"), SubResource("8")],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("5")
+}, {
+"duration": 1.0,
+"texture": SubResource("6")
+}, {
+"duration": 1.0,
+"texture": SubResource("7")
+}, {
+"duration": 1.0,
+"texture": SubResource("8")
+}],
 "loop": true,
 "name": &"default",
 "speed": 5.0

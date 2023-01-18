@@ -118,7 +118,6 @@ namespace Mars_Seal_Crimson
 			}
 		}
 
-
 		private EnumScene2State GetLevelState(int ticker)
 		{
 			var lState = EnumScene2State.SCENE2_STATE_WAIT;
@@ -153,7 +152,7 @@ namespace Mars_Seal_Crimson
 					}
 				case EnumScene2State.SCENE2_STATE_SWITCH_SCENE:
 					{
-						sceneUtil.ChangeSceneToFile(this, nextSceneResource);
+						ElegantExit.Invoke();
 						break;
 					}
 				default:
@@ -181,7 +180,7 @@ namespace Mars_Seal_Crimson
 		{
 			if (processTimer != null)
 			{
-				processTimer.Disconnect("timeout",new Callable(this,nameof(_on_ProcessTimer_timeout)));
+				processTimer.Disconnect("timeout", new Callable(this,nameof(_on_ProcessTimer_timeout)));
 				processTimer.Stop();
 			}
 			for (int ix = 0; ix < 4; ix++)
@@ -194,10 +193,10 @@ namespace Mars_Seal_Crimson
 
 		private void TestPlayerPosition(Vector2 playerPosition)
 		{
-			//GetViewportRect().Size;
-			float coordExitScreenX = 1580.0f; // Should be calculated proportionally using the viewport dimension
+			float coordExitScreenX = SceneUtilities.GetApplicationWindowExtent(this).Size.x - 80.0f;
 			if (playerPosition.x >= coordExitScreenX)
 			{
+				GD.Print($"TestPlayerPosition(), playerPosition = {playerPosition}, levelState = {levelState}");
 				levelState = EnumScene2State.SCENE2_STATE_SWITCH_SCENE;
 			}
 		}
@@ -287,10 +286,7 @@ namespace Mars_Seal_Crimson
 					ShowInventory();
 				}
 			}
-			if (playerCharacter.Position.x >= 800)
-			{
-				ElegantExit.Invoke();
-			}
+			TestPlayerPosition(playerCharacter.Position);
 		}
 	}
 }

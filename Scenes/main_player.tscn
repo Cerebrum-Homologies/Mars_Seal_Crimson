@@ -38,12 +38,36 @@ region = Rect2(105, 0, 35, 74)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_um24f"]
 animations = [{
-"frames": [SubResource("14"), SubResource("15"), SubResource("16"), SubResource("17")],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("14")
+}, {
+"duration": 1.0,
+"texture": SubResource("15")
+}, {
+"duration": 1.0,
+"texture": SubResource("16")
+}, {
+"duration": 1.0,
+"texture": SubResource("17")
+}],
 "loop": true,
 "name": &"Right",
 "speed": 5.0
 }, {
-"frames": [SubResource("10"), SubResource("11"), SubResource("12"), SubResource("13")],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("10")
+}, {
+"duration": 1.0,
+"texture": SubResource("11")
+}, {
+"duration": 1.0,
+"texture": SubResource("12")
+}, {
+"duration": 1.0,
+"texture": SubResource("13")
+}],
 "loop": true,
 "name": &"default",
 "speed": 5.0

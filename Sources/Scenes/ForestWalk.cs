@@ -98,7 +98,6 @@ namespace Mars_Seal_Crimson
 			{
 				inventoryChest = (InventoryChest)childScene.Instantiate();
 				GD.Print($"Loading inventoryChest from PackedScene, inventoryChest = {inventoryChest.Name}");
-				//playerViewport.AddChild(viewportScene.Instance());
 				inventoryChest.Visible = false;
 				AddChild(inventoryChest);
 			}
@@ -118,11 +117,11 @@ namespace Mars_Seal_Crimson
 
 		private void TestPlayerPosition(Vector2 playerPosition)
 		{
-			//GetViewportRect().Size;
-			float coordExitScreenX = 1580.0f; // Should be calculated proportionally using the viewport dimension
+			float coordExitScreenX = SceneUtilities.GetApplicationWindowExtent(this).Size.x - 80.0f;
 			if (playerPosition.x >= coordExitScreenX)
 			{
-				levelState = EnumScene3State.SCENE3_STATE_SWITCH_SCENE;
+				GD.Print($"TestPlayerPosition(), playerPosition = {playerPosition}, levelState = {levelState}");
+				levelState = EnumScene3State.SCENE3_STATE_SWITCH_SCENE;				
 			}
 		}
 
@@ -130,7 +129,11 @@ namespace Mars_Seal_Crimson
 		{
 			var lState = EnumScene3State.SCENE3_STATE_WAIT;
 			if (ticker == 260)
-				lState = EnumScene3State.SCENE3_STATE_SWITCH_SCENE;
+				lState = EnumScene3State.SCENE3_STATE_BIG_FOOT;
+			if (levelState != lState)
+			{
+				lState = levelState;
+			}
 			return lState;
 		}
 
@@ -154,7 +157,8 @@ namespace Mars_Seal_Crimson
 					}
 				case EnumScene3State.SCENE3_STATE_SWITCH_SCENE:
 					{
-						sceneUtil.ChangeSceneToFile(this, nextSceneResource);
+						GD.Print($"[ForestWalk] Switching scenes, levelState = {levelState}");
+						ElegantExit.Invoke();
 						break;
 					}
 				default:
@@ -264,11 +268,6 @@ namespace Mars_Seal_Crimson
 		public override void _Process(double delta)
 		{
 			double speed = walkSpeed;
-
-			//if (moveNode)
-			//{
-			//	gamePlayerMovement.PlayerWalkAction(speed * delta);
-			//}
 			if (Input.IsActionPressed("ui_cancel"))
 			{
 				ShowInGameMenu();
@@ -287,11 +286,8 @@ namespace Mars_Seal_Crimson
 					ShowInventory();
 				}
 			}
-			SceneUtilities.GetApplicationWindowExtent(this);
-			if (playerCharacter.Position.x >= 800)
-			{
-				ElegantExit.Invoke();
-			}
+			//SceneUtilities.GetApplicationWindowExtent(this);
+			TestPlayerPosition(playerCharacter.Position);
 		}
 	}
 }

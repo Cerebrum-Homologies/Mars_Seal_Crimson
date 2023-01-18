@@ -40,11 +40,16 @@ namespace Mars_Seal_Crimson
 			if (navigationAgent2D == null)
 				return;
 			if (navigationAgent2D.IsTargetReached())
+			{
+				GD.Print("MainPlayer, Target position reached at {GlobalPosition}");
 				return;
+			}
 			
 			var current_agent_position = GlobalPosition;// global_transform.origin
 			var next_path_position = navigationAgent2D.GetNextLocation();
 			Vector2 velocity = next_path_position - current_agent_position;
+			if (velocity.Length() < 4.0f)
+				return;
 			velocity = velocity.Normalized();
 			velocity = velocity * Speed;
 

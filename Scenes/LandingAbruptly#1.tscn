@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cgnn2cqb7smux"]
+[gd_scene load_steps=18 format=3 uid="uid://cgnn2cqb7smux"]
 
 [ext_resource type="Texture2D" uid="uid://bi41rilrhxiqp" path="res://Assets/Images/Background/hue_planet_far_horizon.png" id="1"]
 [ext_resource type="Texture2D" uid="uid://bm7wsooxjpjrc" path="res://Assets/Images/Background/hue_planet_crash_vegetation.png" id="2"]
@@ -8,16 +8,34 @@
 [ext_resource type="PackedScene" uid="uid://dcwn6vkhroulj" path="res://Scenes/main_player.tscn" id="7_0ie8p"]
 [ext_resource type="Texture2D" uid="uid://p62u8a0ox7v" path="res://Assets/Images/Particles/smoke_clump#1.png" id="8"]
 
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_kk504"]
+sky_top_color = Color(0.286275, 0.458824, 0.658824, 1)
+sky_horizon_color = Color(0.621569, 0.656956, 0.697956, 1)
+ground_horizon_color = Color(0.621569, 0.656956, 0.697956, 1)
+
+[sub_resource type="Sky" id="Sky_h6nrs"]
+sky_material = SubResource("ProceduralSkyMaterial_kk504")
+
+[sub_resource type="Environment" id="Environment_pebtp"]
+background_mode = 2
+sky = SubResource("Sky_h6nrs")
+tonemap_mode = 2
+glow_enabled = true
+
 [sub_resource type="SpriteFrames" id="1"]
 
 [sub_resource type="ParticleProcessMaterial" id="5"]
-lifetime_randomness = 0.18
+lifetime_randomness = 0.22
 emission_shape = 2
 emission_sphere_radius = 1.0
-direction = Vector3(0.65, 2.5, 0)
+direction = Vector3(0.65, 2.5, 0.9)
 spread = 30.52
 flatness = 0.25
-gravity = Vector3(0, -4.2, 0)
+gravity = Vector3(0, -4.9, 0)
+initial_velocity_min = 3.3
+initial_velocity_max = 5.8
+angular_velocity_min = 0.5
+angular_velocity_max = 0.78
 color = Color(0.0941176, 0.141176, 0.109804, 0.298039)
 
 [sub_resource type="StandardMaterial3D" id="6"]
@@ -46,6 +64,15 @@ _data = {
 [node name="Scene-AbruptLanding" type="Node3D"]
 script = ExtResource("7")
 
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_pebtp")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+light_color = Color(0.894118, 0.956863, 0.933333, 1)
+light_energy = 2.0
+shadow_enabled = true
+
 [node name="Timer-Process" type="Timer" parent="."]
 wait_time = 0.05
 
@@ -62,7 +89,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
 frames = SubResource("1")
 
 [node name="model-shroud-lucent#1" parent="." instance=ExtResource("3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.0929, -3.93073, 7.0755)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.5384, -3.93073, 7.0755)
 
 [node name="boxcart_ship_proto#2" parent="." instance=ExtResource("6")]
 transform = Transform3D(0.118817, -0.0930648, -0.734657, -0.176996, 0.718919, -0.119697, 0.719065, 0.192338, 0.0919308, -3.94424, -10.0879, -10.7439)
@@ -72,7 +99,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.86493, -7.31428, -12.1977)
 amount = 140
 lifetime = 0.88
 explosiveness = 0.09
-randomness = 0.26
+randomness = 0.32
 fixed_fps = 50
 visibility_aabb = AABB(-4, -3.57439, -4, 8, 7.14877, 8)
 process_material = SubResource("5")

@@ -127,6 +127,7 @@ namespace Mars_Seal_Crimson
 
 		private void StartAnimation(String action, bool loop = true)
 		{
+			GD.Print($"StartAnimation(), action = {action}, loop = {loop}");
 			if (animationPlayer != null)
 			{
 				animationPlayer.Play(action);
@@ -173,7 +174,8 @@ namespace Mars_Seal_Crimson
 					}
 				case EnumScene1State.SCENE1_STATE_SWITCH_SCENE:
 					{
-						sceneUtil.ChangeSceneToFile(this, nextSceneResource);
+						//sceneUtil.ChangeSceneToFile(this, nextSceneResource);
+						ElegantExit.Invoke();
 						break;
 					}
 				default:
@@ -204,7 +206,7 @@ namespace Mars_Seal_Crimson
 				processTimer.Disconnect("timeout", new Callable(this, nameof(_on_ProcessTimer_timeout)));
 				processTimer.Stop();
 			}
-			for (int ix = 0; ix < 10; ix++)
+			for (int ix = 0; ix < 4; ix++)
 			{
 				System.Threading.Thread.Sleep(200);
 			}
@@ -232,10 +234,11 @@ namespace Mars_Seal_Crimson
 
 		private void TestPlayerPosition(Vector2 playerPosition)
 		{
-			float coordExitScreenX = 1540.0f; // Should be calculated proportionally using the viewport dimension
+			float coordExitScreenX = SceneUtilities.GetApplicationWindowExtent(this).Size.x - 30.0f;
 			if (playerPosition.x >= coordExitScreenX)
 			{
-				levelState = EnumScene1State.SCENE1_STATE_SWITCH_SCENE;
+				GD.Print($"TestPlayerPosition(), playerPosition = {playerPosition}, levelState = {levelState}");
+				levelState = EnumScene1State.SCENE1_STATE_SWITCH_SCENE;				
 			}
 		}
 
@@ -310,10 +313,7 @@ namespace Mars_Seal_Crimson
 					ShowInventory();
 				}
 			}
-			if (playerCharacter.Position.x >= 800)
-			{
-				ElegantExit.Invoke();
-			}
+			TestPlayerPosition(playerCharacter.Position);
 			/*
 			if (levelState != EnumScene1State.SCENE1_STATE_WAIT)
 			{

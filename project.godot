@@ -8,9 +8,6 @@
 
 config_version=5
 
-_global_script_classes=[]
-_global_script_class_icons={}
-
 [application]
 
 config/name="Mars_Seal_Crimson"
@@ -34,6 +31,10 @@ window/size/fullscreen=true
 [dotnet]
 
 project/assembly_name="Mars_Seal_Crimson"
+
+[editor]
+
+export/convert_text_resources_to_binary=true
 
 [input]
 

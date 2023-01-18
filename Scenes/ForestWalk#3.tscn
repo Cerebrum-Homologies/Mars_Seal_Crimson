@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c0wjr50y7xute"]
+[gd_scene load_steps=19 format=3 uid="uid://c0wjr50y7xute"]
 
 [ext_resource type="Texture2D" uid="uid://gpa60oda4vwr" path="res://Assets/Images/Background/hue_planet_big_volcano#2.png" id="1"]
 [ext_resource type="Script" path="res://Sources/Scenes/ForestWalk.cs" id="2"]
@@ -7,17 +7,83 @@
 [ext_resource type="Texture2D" uid="uid://duqxb2v2e44hb" path="res://Assets/Images/Background/barkwoods_tree_copse#2.png" id="5"]
 [ext_resource type="Texture2D" uid="uid://dxbipbt200dw1" path="res://Assets/Images/Background/hue-deep-forest-cactiitrees#2.png" id="6"]
 [ext_resource type="Texture2D" uid="uid://dmaeksjbtib34" path="res://Assets/Images/Background/hue-deep-forest-cactiitrees#3.png" id="7"]
+[ext_resource type="Texture2D" uid="uid://jpxa3ehoi4kv" path="res://Assets/Images/Particles/volcano_blob#1.png" id="8_n6erb"]
 [ext_resource type="PackedScene" uid="uid://dcwn6vkhroulj" path="res://Scenes/main_player.tscn" id="8_w4bil"]
 
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sharn"]
+sky_top_color = Color(0.286275, 0.458824, 0.658824, 1)
+sky_horizon_color = Color(0.621569, 0.656956, 0.697956, 1)
+ground_horizon_color = Color(0.621569, 0.656956, 0.697956, 1)
+
+[sub_resource type="Sky" id="Sky_fvkst"]
+sky_material = SubResource("ProceduralSkyMaterial_sharn")
+
+[sub_resource type="Environment" id="Environment_e060s"]
+background_mode = 2
+sky = SubResource("Sky_fvkst")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_neko3"]
+lifetime_randomness = 0.24
+emission_shape = 1
+emission_sphere_radius = 3.2
+direction = Vector3(1, 0.45, 0)
+spread = 59.49
+flatness = 0.11
+gravity = Vector3(0, -3.4, 0)
+initial_velocity_min = 2.7
+initial_velocity_max = 4.6
+
+[sub_resource type="StandardMaterial3D" id="2"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.72549, 0.580392, 0.0862745, 0.807843)
+albedo_texture = ExtResource("8_n6erb")
+
+[sub_resource type="QuadMesh" id="QuadMesh_0a0th"]
+material = SubResource("2")
+size = Vector2(0.34, 0.34)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_x6dve"]
+lifetime_randomness = 1.0
+emission_shape = 1
+emission_sphere_radius = 3.5
+direction = Vector3(1, -0.55, 0)
+spread = 49.15
+flatness = 0.17
+gravity = Vector3(0, -3.4, 0)
+initial_velocity_min = 1.9
+initial_velocity_max = 4.15
+angular_velocity_min = 0.35
+angular_velocity_max = 0.68
+linear_accel_min = 0.13
+linear_accel_max = 0.13
+
+[sub_resource type="QuadMesh" id="QuadMesh_j7noq"]
+material = SubResource("2")
+size = Vector2(0.34, 0.34)
+
 [sub_resource type="NavigationPolygon" id="10"]
-vertices = PackedVector2Array(140.844, 694.254, 1.50146, 766.172, 1.50146, 661.291, 164.817, 589.372, 295.17, 679.271, 337.122, 586.376, 440.506, 647.806, 521.414, 752.688, 395.556, 728.715, 548.384, 655.298, 698.215, 746.695, 695.218, 638.816, 1033.83, 674.776, 1165.69, 647.806, 1263.08, 638.816, 1261.58, 715.23, 1180.67, 745.196, 1042.83, 755.685, 889.998, 730.213, 819.577, 623.833, 916.967, 638.817)
-polygons = [PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 0, 3, 5, 6), PackedInt32Array(7, 8, 4, 6, 9, 10), PackedInt32Array(10, 9, 11), PackedInt32Array(12, 13, 14, 15, 16, 17, 18), PackedInt32Array(19, 20, 12, 18, 10, 11)]
-outlines = [PackedVector2Array(1.50146, 766.172, 1.50146, 661.291, 164.817, 589.372, 337.122, 586.376, 440.506, 647.806, 548.384, 655.298, 695.218, 638.816, 819.577, 623.833, 916.967, 638.817, 1033.83, 674.776, 1165.69, 647.806, 1263.08, 638.816, 1261.58, 715.23, 1180.67, 745.196, 1042.83, 755.685, 889.998, 730.213, 698.215, 746.695, 521.414, 752.688, 395.556, 728.715, 295.17, 679.271, 140.844, 694.254)]
+vertices = PackedVector2Array(140.844, 694.254, 1.50146, 766.172, 1.50146, 661.291, 164.817, 589.372, 295.17, 679.271, 337.122, 586.376, 440.506, 647.806, 521.414, 752.688, 395.556, 728.715, 548.384, 655.298, 698.215, 746.695, 695.218, 638.816, 1263.08, 638.816, 1478, 641, 1897, 686, 1885, 751, 1261.58, 715.23, 1165.69, 647.806, 1033.83, 674.776, 1180.67, 745.196, 1042.83, 755.685, 889.998, 730.213, 819.577, 623.833, 916.967, 638.817)
+polygons = [PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 0, 3, 5, 6), PackedInt32Array(7, 8, 4, 6, 9, 10), PackedInt32Array(10, 9, 11), PackedInt32Array(12, 13, 14, 15, 16, 17), PackedInt32Array(18, 17, 16, 19, 20, 21), PackedInt32Array(22, 23, 18, 21, 10, 11)]
+outlines = [PackedVector2Array(1.50146, 766.172, 1.50146, 661.291, 164.817, 589.372, 337.122, 586.376, 440.506, 647.806, 548.384, 655.298, 695.218, 638.816, 819.577, 623.833, 916.967, 638.817, 1033.83, 674.776, 1165.69, 647.806, 1263.08, 638.816, 1478, 641, 1897, 686, 1885, 751, 1261.58, 715.23, 1180.67, 745.196, 1042.83, 755.685, 889.998, 730.213, 698.215, 746.695, 521.414, 752.688, 395.556, 728.715, 295.17, 679.271, 140.844, 694.254)]
 
 [node name="Scene-ForestWalk" type="Node3D"]
 script = ExtResource("2")
 
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_e060s")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+light_color = Color(0.894118, 0.956863, 0.933333, 1)
+light_energy = 2.0
+shadow_enabled = true
+
 [node name="Timer-Process" type="Timer" parent="."]
+wait_time = 0.05
 
 [node name="Sprite-Planet-VolcanoMountain" type="Sprite3D" parent="."]
 transform = Transform3D(5.6, 0, 0, 0, 4.2, 0, 0, 0, 1, -10.5, 0, -38)
@@ -53,6 +119,26 @@ texture = ExtResource("7")
 
 [node name="AnimatedSprite-Clouds" type="AnimatedSprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.8, 8.65, -30)
+
+[node name="Particles-Volcano-Crater-Left" type="GPUParticles3D" parent="."]
+transform = Transform3D(0.97192, 0, -0.235312, 0, 1, 0, 0.235312, 0, 0.97192, -21.105, 16.15, -22.048)
+amount = 72
+lifetime = 1.49
+explosiveness = 0.1
+randomness = 0.29
+fixed_fps = 50
+process_material = SubResource("ParticleProcessMaterial_neko3")
+draw_pass_1 = SubResource("QuadMesh_0a0th")
+
+[node name="Particles-Volcano-Crater-Right" type="GPUParticles3D" parent="."]
+transform = Transform3D(0.981155, 0, -0.193224, 0, 1, 0, 0.193224, 0, 0.981155, -4.974, 15.9, -21)
+amount = 64
+lifetime = 1.4
+explosiveness = 0.13
+randomness = 0.37
+fixed_fps = 50
+process_material = SubResource("ParticleProcessMaterial_x6dve")
+draw_pass_1 = SubResource("QuadMesh_j7noq")
 
 [node name="Camera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.35)
