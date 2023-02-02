@@ -20,7 +20,7 @@ namespace Mars_Seal_Crimson
 
 		public void MovePlayerToPosition(Vector2 movementTarget)
 		{
-			navigationAgent2D.TargetLocation = movementTarget;
+			navigationAgent2D.TargetPosition = movementTarget;
 		}
 
 		public override void _Ready()
@@ -46,7 +46,7 @@ namespace Mars_Seal_Crimson
 			}
 			
 			var current_agent_position = GlobalPosition;// global_transform.origin
-			var next_path_position = navigationAgent2D.GetNextLocation();
+			var next_path_position = navigationAgent2D.GetNextPathPosition();
 			Vector2 velocity = next_path_position - current_agent_position;
 			if (velocity.Length() < 4.0f)
 				return;

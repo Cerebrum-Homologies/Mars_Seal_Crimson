@@ -234,8 +234,8 @@ namespace Mars_Seal_Crimson
 
 		private void TestPlayerPosition(Vector2 playerPosition)
 		{
-			float coordExitScreenX = SceneUtilities.GetApplicationWindowExtent(this).Size.x - 30.0f;
-			if (playerPosition.x >= coordExitScreenX)
+			float coordExitScreenX = SceneUtilities.GetApplicationWindowExtent(this).Size.X - 30.0f;
+			if (playerPosition.X >= coordExitScreenX)
 			{
 				GD.Print($"TestPlayerPosition(), playerPosition = {playerPosition}, levelState = {levelState}");
 				levelState = EnumScene1State.SCENE1_STATE_SWITCH_SCENE;				

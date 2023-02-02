@@ -4,23 +4,22 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bm7wsooxjpjrc"
 path.s3tc="res://.godot/imported/hue_planet_crash_vegetation.png-a14354ea95fedc6fc2d4f95d7ad75de6.s3tc.ctex"
-path.etc2="res://.godot/imported/hue_planet_crash_vegetation.png-a14354ea95fedc6fc2d4f95d7ad75de6.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc", "etc2"],
+"imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Assets/Images/Background/hue_planet_crash_vegetation.png"
-dest_files=["res://.godot/imported/hue_planet_crash_vegetation.png-a14354ea95fedc6fc2d4f95d7ad75de6.s3tc.ctex", "res://.godot/imported/hue_planet_crash_vegetation.png-a14354ea95fedc6fc2d4f95d7ad75de6.etc2.ctex"]
+dest_files=["res://.godot/imported/hue_planet_crash_vegetation.png-a14354ea95fedc6fc2d4f95d7ad75de6.s3tc.ctex"]
 
 [params]
 
 compress/mode=2
+compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
-compress/bptc_ldr=0
 compress/normal_map=0
 compress/channel_pack=0
 mipmaps/generate=true

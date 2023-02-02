@@ -4,23 +4,22 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://cddc8tbm4w5xm"
 path.s3tc="res://.godot/imported/hue-deep-forest-cactiitrees#1.png-b128fae514f69a8f8d51330b4135c82d.s3tc.ctex"
-path.etc2="res://.godot/imported/hue-deep-forest-cactiitrees#1.png-b128fae514f69a8f8d51330b4135c82d.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc", "etc2"],
+"imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Assets/Images/Background/hue-deep-forest-cactiitrees#1.png"
-dest_files=["res://.godot/imported/hue-deep-forest-cactiitrees#1.png-b128fae514f69a8f8d51330b4135c82d.s3tc.ctex", "res://.godot/imported/hue-deep-forest-cactiitrees#1.png-b128fae514f69a8f8d51330b4135c82d.etc2.ctex"]
+dest_files=["res://.godot/imported/hue-deep-forest-cactiitrees#1.png-b128fae514f69a8f8d51330b4135c82d.s3tc.ctex"]
 
 [params]
 
 compress/mode=2
+compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
-compress/bptc_ldr=0
 compress/normal_map=0
 compress/channel_pack=0
 mipmaps/generate=true

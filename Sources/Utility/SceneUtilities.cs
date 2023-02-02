@@ -81,11 +81,11 @@ namespace Mars_Seal_Crimson
 			{
 				Rect2 appExtent = GetApplicationWindowExtent(referenceScene);
 				GD.Print($"GetExtentOffsetsForCenter(), appExtent = {appExtent}\n");
-				if ((appExtent.Size.x >= 100.0f) && (graphicsControl.GetRect().Position.x >= 100.0f))
+				if ((appExtent.Size.X >= 100.0f) && (graphicsControl.GetRect().Position.X >= 100.0f))
 				{
 					GD.Print($"GetExtentOffsetsForCenter(), appExtent = {appExtent}, graphicsControl size={graphicsControl.GetRect()}\n");
-					res = new Vector2((appExtent.Size.x / 2.0f) - (graphicsControl.GetRect().Position.x / 2.0f),
-					(appExtent.Size.y / 2.0f) - (graphicsControl.GetRect().Position.y / 2.0f));
+					res = new Vector2((appExtent.Size.X / 2.0f) - (graphicsControl.GetRect().Position.X / 2.0f),
+					(appExtent.Size.Y / 2.0f) - (graphicsControl.GetRect().Position.Y / 2.0f));
 				}
 			}
 			return res;
@@ -102,7 +102,7 @@ namespace Mars_Seal_Crimson
 			if (graphicsControl != null)
 			{
 				Rect2 appExtent = GetApplicationWindowExtent(referenceScene);
-				if (appExtent.Size.x >= 100.0f)
+				if (appExtent.Size.X >= 100.0f)
 				{
 					//Vector2 controlExtent = graphicsControl.GetRect().Position;
 					graphicsControl.SetPosition(placePosition);
@@ -255,10 +255,10 @@ namespace Mars_Seal_Crimson
 				{
 					Rect2 appExtent = GetApplicationWindowExtent(referenceScene);
 					GD.Print($"GetExtentOffsetsForCenter(), appExtent = {appExtent}\n");
-					if ( (appExtent.Size.x >= 100.0f) && (graphicsControl.Size.x >= 100.0f) )
+					if ( (appExtent.Size.X >= 100.0f) && (graphicsControl.Size.X >= 100.0f) )
 					{
 						GD.Print($"GetExtentOffsetsForCenter(), appExtent = {appExtent}, graphicsControl size={graphicsControl.RectSize}\n");
-						res = new Vector2( (appExtent.Size.x / 2.0f) - (graphicsControl.RectSize.x / 2.0f), (appExtent.Size.y / 2.0f) - (graphicsControl.RectSize.y / 2.0f) );
+						res = new Vector2( (appExtent.Size.X / 2.0f) - (graphicsControl.RectSize.X / 2.0f), (appExtent.Size.Y / 2.0f) - (graphicsControl.RectSize.Y / 2.0f) );
 					}
 				}
 				return res;
@@ -275,7 +275,7 @@ namespace Mars_Seal_Crimson
 				if ( (graphicsControl != null) && (placePosition != null) )
 				{
 					Rect2 appExtent = GetApplicationWindowExtent(referenceScene);
-					if (appExtent.Size.x >= 100.0f)
+					if (appExtent.Size.X >= 100.0f)
 					{
 						Vector2 controlExtent = graphicsControl.RectSize;
 						graphicsControl.RectPosition = placePosition;

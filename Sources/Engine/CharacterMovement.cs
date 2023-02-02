@@ -28,7 +28,7 @@ namespace Mars_Seal_Crimson
             {
                 /* FIX -- Determine Path navigation */
                 //pathPlotPlayer = navigationPlayerPath.GetSimplePath(startPosition, clickPosition);
-                navigationPlayerPath.TargetLocation = clickPosition;
+                navigationPlayerPath.TargetPosition = clickPosition;
                 pathPlotPlayer = navigationPlayerPath.GetCurrentNavigationPath();
                 pathPlotPlayer = pathPlotPlayer.Skip(1).Take(pathPlotPlayer.Length - 1).ToArray();
             }
